@@ -22,7 +22,7 @@ const Employee = require('../lib/employee');
         });
 
         it("should throw an error if 'name' is not a string", () => {
-
+ 
             const cb = () => new Employee(10, 1111, "brandyn.huffer@yahoo.com");
 
             const err = new Error("Expected parameter 'name' to be a non-empty string");
