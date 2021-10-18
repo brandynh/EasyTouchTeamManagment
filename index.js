@@ -1,16 +1,19 @@
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
-const createTeamHtml = require("./utils/createHTML");
+const createHtml = require("./utils/createHTML");
 
 const inquirer = require("inquirer");
 const fs = require("fs");
 
 let constructingTeam = [];
+let myTeam = [];
+
+// Position arrays
 let myManager = [];
 let myEngineer = [];
 let myIntern = [];
-let myTeam = [];
+
 
 const buildTeamQuestions = () => {
     return inquirer.prompt([
@@ -107,24 +110,24 @@ const employeeInitalize = employeeList => {
 
     //Loops through array myManager and creates new Manager object with user defined information
 
-    myManager.forEach(manager => {
+    myManager.forEach(managerData => {
 
-        const parsedId = parseInt(manager.id);
+        const parsedId = parseInt(managerData.id);
 
-        const parsedOffice = parseInt(manager.officeNumber)
+        const parsedOffice = parseInt(managerData.officeNumber)
 
-        const makeManager = new Manager(manager.name, parsedId, manager.email, parsedOffice);
+        const makeManager = new Manager(managerData.name, parsedId, managerData.email, parsedOffice);
 
         myTeam.push(makeManager);
     });
 
     //Loops through array myEngineer and creates new Engineer object with user defined information
 
-    myEngineer.forEach(engineer => {
+    myEngineer.forEach(engineerData => {
 
-        const parsedId = parseInt(engineer.id);
+        const parsedId = parseInt(engineerData.id);
 
-        const makeEngineer = new Engineer(engineer.name, parsedId, engineer.email, engineer.github);
+        const makeEngineer = new Engineer(engineerData.name, parsedId, engineerData.email, engineerData.github);
 
         myTeam.push(makeEngineer);
 
@@ -132,11 +135,11 @@ const employeeInitalize = employeeList => {
 
     //Loops through array myIntern and creates new Intern object with user defined information
 
-    myIntern.forEach(intern => {
+    myIntern.forEach(internData => {
 
-        const parsedId = parseInt(intern.id);
+        const parsedId = parseInt(internData.id);
 
-        const makeIntern = new Intern(intern.name, parsedId, intern.email, intern.school);
+        const makeIntern = new Intern(internData.name, parsedId, internData.email, internData.school);
 
         myTeam.push(makeIntern);
 
@@ -151,7 +154,7 @@ const init = () => {
     buildTeamQuestions()
         // writeFileSync uses a promise insead of CB function *Found in Node miniproject*
 
-        .then(fs.writeFileSync('./dist/index.html', createTeamHtml(myTeam)))
+        .then(fs.writeFileSync('./dist/index.html', createHtml(myTeam)))
 
         .then(() => console.log('HTML creation was a success!'))
 
