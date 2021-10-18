@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: #044c52;
+    font-family:sans-serif
+}
+
+.banner {
+    background-color: #560fc9;
+    height: 25vh;
+}
