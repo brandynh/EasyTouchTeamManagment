@@ -32,7 +32,7 @@ Creating a work team on the fly with user information.
 ## Test-Instructions
 After completeing installation:
 
-- Step 1: Navigate to RapidReadme directory
+- Step 1: Navigate to EasyTouchTeamManagment directory
 - Step 2: In terminal run "node ." or "node index.js"
 - Step 3: Fill out information
     
