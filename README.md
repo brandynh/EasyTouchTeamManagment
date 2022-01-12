@@ -8,6 +8,8 @@ node # Easy Touch Team Managment
 
 - [Usage](#usage)
 
+- [Demo](#demo)
+
 - [Test Instructions](#test-instructions)
 
 - [Questions](#questions)
@@ -28,6 +30,9 @@ This program allows for the building of a user specified team, which displays vi
 ## Usage
 Creating a work team on the fly with user information.
 
+## Demo
+
+![screenshot](assets/EasyTouchDemo.gif.gif)
     
 ## Test-Instructions
 After completeing installation:

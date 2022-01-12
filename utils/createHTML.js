@@ -60,7 +60,6 @@ function generateTeam(employeeList) {
             case 'Manager':
 
                 const managerData = generateManager(employee);
-                console.log(managerData);
                 renderEmployeeList.push(managerData);
 
                 break;
