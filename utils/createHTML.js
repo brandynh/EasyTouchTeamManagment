@@ -3,11 +3,11 @@ const generateManager = (data) => {
     <div class="card hoverable">
         <div class="card-panel purple darken-4">
             <h2>${data.name}</h2>
-            <h4>${data.returnJobTitle()}<h4>
+            <h4>${data.getJobTitle()}<h4>
         </div>
         <div class="card-content">
             <li>${data.id}</li>
-            <li>${data.email}</li>
+            <li><a href="mailto:${data.email}"> Email </a></li>
             <li>${data.officeNumber}</li>
         </div>
     </div>
@@ -18,13 +18,13 @@ const generateEngineer = (data) => {
     return `<div class="col s12 m4 l3">
     <div class="card hoverable">
         <div class="card-panel purple darken-4">
-            <h2>${data.name}</h2>
-            <h4>${data.returnJobTitle()}<h4>
+            <h2> Employee ID: ${data.name}</h2>
+            <h4>${data.getJobTitle()}<h4>
         </div>
         <div class="card-content">
             <li>${data.id}</li>
-            <li>${data.email}</li>
-            <li>${data.gitHub}</li>
+            <li><a href="mailto:${data.email}"> Email </a></li>
+            <li><a href="https://github.com/${data.getgithub()}">GitHub</a></li>
         </div>
     </div>
 </div>`
@@ -35,15 +35,60 @@ const generateIntern = (data) => {
     <div class="card hoverable">
         <div class="card-panel purple darken-4">
             <h2>${data.name}</h2>
-            <h4>${data.returnJobTitle()}<h4>
+            <h4>${data.getJobTitle()}<h4>
         </div>
         <div class="card-content">
             <li>${data.id}</li>
-            <li>${data.email}</li>
-            <li>${data.school}</li>
+            <li><a href="mailto:${data.email}"> Email </a></li>
+            <li>${data.getSchool()}</li>
         </div>
     </div>
 </div>`
+}
+
+function generateTeam(employeeList) {
+    let finalizedTeam;
+    let renderEmployeeList = [];
+
+    employeeList.forEach(employee => {
+        // Switch statement generating roles based off user input information
+        console.log(employee);
+        const role = employee.getJobTitle();
+
+        switch (role) {
+
+            case 'Manager':
+
+                const managerData = generateManager(employee);
+                console.log(managerData);
+                renderEmployeeList.push(managerData);
+
+                break;
+
+            case 'Engineer':
+
+                const engineerData = generateEngineer(employee);
+                renderEmployeeList.push(engineerData);
+
+                break;
+
+            case 'Intern':
+
+                const internData = generateIntern(employee);
+                renderEmployeeList.push(internData);
+
+                break;
+
+            default:
+                'There was an error in the process!'
+        }
+        finalizedTeam = renderEmployeeList.join('');
+
+
+    })
+
+    return finalizedTeam;
+    //call employee type specifc function
 }
 
 
@@ -65,9 +110,7 @@ const createHTML = (data) => {
         <div class="card-panel cyan darken-3 center"><h1>Easy Touch Team Managment</h1></div>
             <div class="container">
                 <div id='employees' class="row">
-                ${generateManager(data)}
-                ${generateEngineer(data)}
-                ${generateIntern(data)}
+                ${generateTeam(data)}
             </div>
          </div>
         

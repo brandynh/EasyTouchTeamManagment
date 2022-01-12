@@ -56,7 +56,7 @@ const buildTeamQuestions = () => {
 
         {
             type: "input",
-            name: "gitHub",
+            name: "github",
             message: "Please enter the Engineer's GitHub",
             when: (answers) => answers.employeeJob === "Engineer"
         },
@@ -154,12 +154,24 @@ const init = () => {
     buildTeamQuestions()
         // writeFileSync uses a promise insead of CB function *Found in Node miniproject*
 
-        .then(fs.writeFileSync('./dist/index.html', createHtml(myTeam)))
+        .then(() => fs.writeFileSync('./dist/index.html', createHtml(myTeam)))
 
         .then(() => console.log('HTML creation was a success!'))
 
         .catch((err) => console.error(err));
 };
+
+
+
+// const init = () => {
+//     buildTeamQuestions()
+
+//         .then((() => fs.writeFileSync('./dist/index.html', createHtml(myTeam))))
+
+//     .then(() => console.log('HTML creation was a success!'))
+//         .catch((err) => console.error(err));
+// };
+
 
 
 
